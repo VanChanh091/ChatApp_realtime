@@ -1,7 +1,19 @@
 //rafce
-import React from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import useLogin from "../../hooks/useLogin";
 
 const Login = () => {
+  const [userName, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  const { login, loading } = useLogin();
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    await login(userName, password);
+  };
+
   return (
     <div className="flex flex-col items-center justify-center min-w-96 mx-auto">
       <div
@@ -13,7 +25,7 @@ const Login = () => {
           <span className="text-blue-500">ChatApp</span>
         </h1>
 
-        <form>
+        <form onSubmit={handleLogin}>
           <div>
             <label className="label p-2">
               <span className="text-base label-text text-white">Username</span>
@@ -22,6 +34,11 @@ const Login = () => {
               type="text"
               placeholder="Enter Username"
               className="w-full input input-bordered h-10"
+              value={userName}
+              onChange={(e) => {
+                console.log("Username:", e.target.value); // Log để kiểm tra giá trị
+                setUsername(e.target.value);
+              }}
             />
           </div>
           <div>
@@ -32,17 +49,29 @@ const Login = () => {
               type="password"
               placeholder="Enter Password"
               className="w-full input input-bordered h-10"
+              value={password}
+              onChange={(e) => {
+                console.log("Password:", e.target.value); // Log để kiểm tra giá trị
+                setPassword(e.target.value);
+              }}
             />
           </div>
-          <a
-            href="#"
+          <Link
+            to="/signup"
             className="text-sm hover:underline hover:text-blue-300 mt-2 inline-block text-white"
           >
             {"Don't"} have an account?
-          </a>
+          </Link>
           <div>
-            <button className="btn btn-block btn-sm mt-2 border border-slate-700">
-              Login
+            <button
+              className="btn btn-block btn-sm mt-2 border border-slate-700"
+              disabled={loading}
+            >
+              {loading ? (
+                <span className="loading loading-spinner"></span>
+              ) : (
+                "Login"
+              )}
             </button>
           </div>
         </form>

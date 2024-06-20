@@ -21,9 +21,9 @@ app.use(express.urlencoded({ extended: true }));
 //   res.send("Hello World!");
 // });
 
-app.use("/auth", authRoutes);
-app.use("/message", messageRoutes);
-app.use("/users", userRoutes);
+app.use("/api/auth", authRoutes);
+app.use("/api/message", messageRoutes);
+app.use("/api/users", userRoutes);
 
 app.listen(port, () => {
   connectToMongoDB();
