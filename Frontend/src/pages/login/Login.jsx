@@ -7,7 +7,7 @@ const Login = () => {
   const [userName, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const { login, loading } = useLogin();
+  const { loading, login } = useLogin();
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -35,12 +35,10 @@ const Login = () => {
               placeholder="Enter Username"
               className="w-full input input-bordered h-10"
               value={userName}
-              onChange={(e) => {
-                console.log("Username:", e.target.value); // Log để kiểm tra giá trị
-                setUsername(e.target.value);
-              }}
+              onChange={(e) => setUsername(e.target.value)}
             />
           </div>
+
           <div>
             <label className="label">
               <span className="text-base label-text text-white">Password</span>
@@ -50,10 +48,7 @@ const Login = () => {
               placeholder="Enter Password"
               className="w-full input input-bordered h-10"
               value={password}
-              onChange={(e) => {
-                console.log("Password:", e.target.value); // Log để kiểm tra giá trị
-                setPassword(e.target.value);
-              }}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </div>
           <Link
