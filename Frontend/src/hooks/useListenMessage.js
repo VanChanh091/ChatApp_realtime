@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useSocketContext } from "../context/SocketContext";
 import useConversation from "../zustand/useConversation";
+
 import notification from "../assets/sounds/message_notification.mp3";
 
 const useListenMessage = () => {
@@ -14,6 +15,7 @@ const useListenMessage = () => {
       sound.play();
       setMessages([...messages, newMessage]);
     });
+    return () => socket?.off("newMessage"); // Clean up the event listener when component unmounts
   }, [socket, messages, setMessages]);
 };
 
