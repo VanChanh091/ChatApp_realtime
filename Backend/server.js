@@ -25,11 +25,11 @@ app.use("/api/message", messageRoutes);
 app.use("/api/users", userRoutes);
 
 // #2 set up environment to deploy
-app.use(express.static(path.join(__dirname, "/frontend/dist")));
+app.use(express.static(path.join(__dirname, "/Frontend/dist")));
 
 // #3 set up environment to deploy
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "frontend", "dist", "index.html"));
+  res.sendFile(path.join(__dirname, "Frontend", "dist", "index.html"));
 });
 
 server.listen(port, () => {
