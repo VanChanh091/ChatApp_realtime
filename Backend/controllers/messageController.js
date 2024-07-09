@@ -56,7 +56,9 @@ export const getMessage = async (req, res) => {
       return res.status(404).json({ error: "Conversation not found" });
     }
 
-    res.status(200).json(conversation.messages);
+    const messages = conversation.messages;
+
+    res.status(200).json(messages);
   } catch (error) {
     console.log("Error in getMessage controller", error.message);
     res.status(500).json({ error: "Internal Server Error" });

@@ -25,7 +25,6 @@ const MessageContainer = () => {
               {selectedConversation.fullName}
             </span>
           </div>
-
           <ManyMessages />
           <MessageInput />
         </>

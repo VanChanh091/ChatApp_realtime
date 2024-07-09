@@ -3,7 +3,7 @@ import { useAuthContext } from "../../context/AuthContext";
 import useConversation from "../../zustand/useConversation";
 import { extractTime } from "../../utils/extractTime";
 const Message = ({ message }) => {
-  const { authUser } = useAuthContext();
+  const { authUser } = useAuthContext(); //auth user
   const { selectedConversation } = useConversation();
   const fromMe = message.senderId === authUser._id;
   const chatClassName = fromMe ? "chat-end" : "chat-start";

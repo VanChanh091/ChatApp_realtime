@@ -5,8 +5,8 @@ import MessageSkeleton from "../skeletons/MessageSkeleton";
 import useListenMessage from "../../hooks/useListenMessage";
 
 const ManyMessages = () => {
-  const { loading, messages } = useGetMessages();
-  useListenMessage();
+  const { loading, messages } = useGetMessages(); //get api
+  useListenMessage(); //socket
 
   const lastMessRef = useRef();
 
@@ -15,6 +15,7 @@ const ManyMessages = () => {
       lastMessRef.current?.scrollIntoView({ behavior: "smooth" });
     }, 100);
   }, [messages]);
+
   return (
     <div className="px-4 flex-1 overflow-auto">
       {!loading &&
